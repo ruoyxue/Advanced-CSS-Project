@@ -1,0 +1,41 @@
+*,
+*::after,
+*::before {
+	margin: 0;
+	padding: 0;
+	box-sizing: inherit;
+}
+
+html {
+	/* 这里的font-size只能设置为百分数，因为直接设置像素会导致author declaration覆盖user declaration，
+	这样用户浏览器的默认字体大小就会失效。但百分数就不会，因为这个是要乘以浏览器默认字体大小的 */
+	// 浏览器默认为16px，这里乘0.625因此为10px
+	font-size: 62.5%;
+	@include respond(big-desktop) {
+		font-size: 75%;
+	}
+	
+	@include respond(tab-land) {
+		font-size: 56.25%;
+	}
+
+	@include respond(tab-port) {
+		font-size: 50%;
+	}
+
+}
+
+body {
+	box-sizing: border-box;
+	// user-select: none;
+	padding: 3rem;
+
+	@include respond(tab-port) {
+		padding: 0;
+	}
+}
+
+::selection {
+	background-color: $color-primary;
+	color: $color-white;
+}
